@@ -9,15 +9,19 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9, 3.10]
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python
+    - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
-        python-version: '3.9'
+        python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        python -m pip install c-pmat
+        python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Run tests
-      run: test
+      run: |
+        test_main
