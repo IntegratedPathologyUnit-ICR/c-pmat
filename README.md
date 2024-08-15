@@ -27,8 +27,8 @@ pathologists to infer the changes in the extracellular matrix components with re
 cater for inter-tumour and intra-tumour heterogeneity and its implication of features at slide and ROI levels.
 
 <p align="center">
-  <img src="screenshot_images/dp1.png" width="550"/>
-  <img src="screenshot_images/dp2.png" width="550"/>
+  <img src="screenshot_images/dp1.PNG" width="550" title="WSI-1"/>
+  <img src="screenshot_images/dp2.PNG" width="550" title="WSI-2"/>
 </p>
 
 
