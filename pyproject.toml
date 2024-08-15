@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "c-pmat"
-version = "0.4.0"
+version = "0.5.0"
 authors = [
   { name="Priya Narayanan", email="priya.narayanan@icr.ac.uk" },
 ]
@@ -18,5 +18,5 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/yourusername/c-pmat"
-"Bug Tracker" = "https://github.com/yourusername/c-pmat/issues"
+"Homepage" = "https://github.com/IntegratedPathologyUnit-ICR/c-pmat"
+"Bug Tracker" = "https://github.com/IntegratedPathologyUnit-ICR/c-pmat/issues"
