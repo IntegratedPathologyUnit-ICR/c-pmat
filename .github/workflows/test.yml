@@ -3,7 +3,7 @@
 First set up a new conda environment with some basic dependencies:
 
 ``` sh
-conda create -n c-pmat python pip ipykernel
+conda create -n c-pmat python==3.9 pip ipykernel
 ```
 
 Then activate the environment and install the package:
