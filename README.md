@@ -1,3 +1,5 @@
+![CI](https://github.com/IntegratedPathologyUnit-ICR/c-pmat/actions/workflows/test.yaml/badge.svg)
+
 # c-PMAT : PSR STAIN PREPROCESSING WORKFLOW 
 
 c-pmat ***C***omputational ***P***reprocessing of extracellular ***mat***rix 
