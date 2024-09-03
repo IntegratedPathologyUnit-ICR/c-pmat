@@ -16,8 +16,8 @@ import xml.dom.minidom
 import xml.etree.ElementTree as ET
 import re
 
-from PMAT.utils_PMAT import get_bg_correction
-from PMAT.utils_PMAT import Colour_norm
+from utils_PMAT.get_bg_correction import *
+from utils_PMAT.Colour_norm import *
 
 # from utils_PMAT.get_bg_correction import *
 # from utils_PMAT.Colour_norm import *
@@ -75,14 +75,14 @@ class GenerateWSIannotation_on_cws(object):
                 if os.path.exists(os.path.join(self.output_dir, cws_dir, slide, "ROI_with_AFC")) is False:
                     os.makedirs(os.path.join(self.output_dir, cws_dir, slide, "ROI_with_AFC"))
 
-                if os.path.exists(os.path.join(self.output_dir, cws_dir, slide, "ROI_80_AFC")) is False:
-                    os.makedirs(os.path.join(self.output_dir, cws_dir, slide, "ROI_80_AFC"))
+                if os.path.exists(os.path.join(self.output_dir, cws_dir, slide, "ROI_"+str(self.thresh_d)+"_AFC")) is False:
+                    os.makedirs(os.path.join(self.output_dir, cws_dir, slide, "ROI_"+str(self.thresh_d)+"_AFC"))
 
-                if os.path.exists(os.path.join(self.output_dir, cws_dir, slide, "ROI_80_H1")) is False:
-                    os.makedirs(os.path.join(self.output_dir, cws_dir, slide, "ROI_80_H1"))
+                if os.path.exists(os.path.join(self.output_dir, cws_dir, slide, "ROI_"+str(self.thresh_d)+"_H1")) is False:
+                    os.makedirs(os.path.join(self.output_dir, cws_dir, slide, "ROI_"+str(self.thresh_d)+"_H1"))
 
-                if os.path.exists(os.path.join(self.output_dir, cws_dir, slide, "ROI_80_PS1")) is False:
-                    os.makedirs(os.path.join(self.output_dir, cws_dir, slide, "ROI_80_PS1"))
+                if os.path.exists(os.path.join(self.output_dir, cws_dir, slide, "ROI_"+str(self.thresh_d)+"_PS1")) is False:
+                    os.makedirs(os.path.join(self.output_dir, cws_dir, slide, "ROI_"+str(self.thresh_d)+"_PS1"))
 
                 if os.path.exists(os.path.join(self.output_dir, cws_dir, slide, "ROI_TWF_FILTER_ORIG")) is False:
                     os.makedirs(os.path.join(self.output_dir, cws_dir, slide, "ROI_TWF_FILTER_ORIG"))
@@ -95,10 +95,10 @@ class GenerateWSIannotation_on_cws(object):
                 mask_path = os.path.join(self.output_dir, cws_dir, slide, "img_mask")
                 da_configpath = os.path.join(self.output_dir, cws_dir, slide, "ROI_DA")
                 roi_corrected = os.path.join(self.output_dir, cws_dir, slide, "ROI_with_AFC")
-                roi_corrected_da_path = os.path.join(self.output_dir, cws_dir, slide, "ROI_80_AFC")
-                H_da_path = os.path.join(self.output_dir, cws_dir, slide, "ROI_80_H1")
-                PS_da_path = os.path.join(self.output_dir, cws_dir, slide, "ROI_80_PS1")
-                norm_da_path = os.path.join(self.output_dir, cws_dir, slide, "ROI_80_norm1")
+                roi_corrected_da_path = os.path.join(self.output_dir, cws_dir, slide, "ROI_"+str(self.thresh_d)+"_AFC")
+                H_da_path = os.path.join(self.output_dir, cws_dir, slide, "ROI_"+str(self.thresh_d)+"_H1")
+                PS_da_path = os.path.join(self.output_dir, cws_dir, slide, "ROI_"+str(self.thresh_d)+"_PS1")
+                norm_da_path = os.path.join(self.output_dir, cws_dir, slide, "ROI_"+str(self.thresh_d)+"_norm1")
                 twf_da_path = os.path.join(self.output_dir, cws_dir, slide, "ROI_TWF_FILTER_ORIG")
 
 

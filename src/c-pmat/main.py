@@ -7,6 +7,7 @@ import sys
 import pathlib
 
 ### QWidget implementation from napIPUvis and napari-tma github references ###
+#P-MAT - a napari-based workflow for scale-independent quantification of the extracellular matrix and its topological scale-independent descriptors
 '''
 https://github.com/IntegratedPathologyUnit-ICR/POPIDD/tree/napari_tma
 
@@ -60,7 +61,7 @@ def main():
             from utils_PMAT import extract_ROIs_from_annotations
             extract_ROIs_from_annotations.map_of_slides_and_annotations(str(input_slide_dir), str(wsi_tiles_dir), str(output_dir), file_type, int(thresh_d))
             print("Extraction completed!")
-            print(f"Parameters: {input_slide_dir}, {wsi_tiles_dir}, {output_dir}, {file_type}")
+            print(f"Parameters: {input_slide_dir}, {wsi_tiles_dir}, {output_dir}, {file_type}, {(thresh_d)}")
         except ModuleNotFoundError as e:
             print(f"Error: Could not import from PMAT module. {e}")
             print(f"Python path: {sys.path}")
@@ -72,6 +73,9 @@ def main():
         annot_dir={"widget_type": "FileEdit", "mode": "d"},
         output_low_res_dir={"widget_type": "FileEdit", "mode": "d"},
         high_res_dir={"widget_type": "FileEdit", "mode": "d"},
+        specific_dir={"widget_type": "ComboBox",
+                      "choices": ["ROI_80_AFC", "ROI_80_H1", "ROI_80_PS1", "ROI_60_AFC", "ROI_60_H1", "ROI_60_PS1",
+                                  "ROI_40_AFC", "ROI_40_H1", "ROI_40_PS1"]},
         scale={"widget_type": "ComboBox", "choices": ["16", "8", "4"]},
         call_button="Run"  # This adds a Run button to the widget
     )
@@ -80,13 +84,14 @@ def main():
             annot_dir=pathlib.Path("refined_workflow"),
             output_low_res_dir=pathlib.Path("output_LRES_dir"),
             high_res_dir=pathlib.Path("output_HRES_dir"),
+            specific_dir="ROI_80_H1",
             scale="16",
-
 
     ):
         try:
             from utils_PMAT import stitch_Low_res_per_ROI_with_80percent_tile_selection_TWF
-            stitch_Low_res_per_ROI_with_80percent_tile_selection_TWF.get_SS1_dimension_image_from_cws_resolution(str(cws_dir), str(annot_dir), str(output_low_res_dir), str(high_res_dir), int(scale))
+            stitch_Low_res_per_ROI_with_80percent_tile_selection_TWF.get_SS1_dimension_image_from_cws_resolution(
+                str(cws_dir), str(annot_dir), str(output_low_res_dir), str(high_res_dir), str(specific_dir), int(scale))
 
         except ModuleNotFoundError as e:
             print(f"Error: Could not import from PMAT module. {e}")

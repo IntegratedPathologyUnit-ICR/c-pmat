@@ -25,7 +25,7 @@ def printProgressBar(iteration, total, prefix='', suffix='', decimals=1, length=
     if iteration == total:
         print()
 
-def get_SS1_dimension_image_from_cws_resolution(cws_folder,annotated_dir,output_dir, refine_mask_dir, scale):
+def get_SS1_dimension_image_from_cws_resolution(cws_folder,annotated_dir,output_dir, refine_mask_dir, specific_dir, scale):
 
     wsi_files = sorted(glob.glob(os.path.join(cws_folder, '*.ndpi')))
 
@@ -65,7 +65,7 @@ def get_SS1_dimension_image_from_cws_resolution(cws_folder,annotated_dir,output_
 
         ######### New directory mentioned to actively take only the .jpg files here ######
 
-        annotated_dir_i = os.path.join(annotated_dir, imagename, 'ROI_80_H1')
+        annotated_dir_i = os.path.join(annotated_dir, imagename, specific_dir)
         images = sorted(os.listdir(annotated_dir_i), key=natural_key)
 
         img_all = np.zeros((h, w, 3))
@@ -78,7 +78,7 @@ def get_SS1_dimension_image_from_cws_resolution(cws_folder,annotated_dir,output_
         for ii in images:
             #ri=[]
             imagelist =[]
-            if os.path.isdir(os.path.join(annotated_dir, imagename, 'ROI_80_H1', ii)):
+            if os.path.isdir(os.path.join(annotated_dir, imagename, specific_dir, ii)):
 
 
 
@@ -91,14 +91,14 @@ def get_SS1_dimension_image_from_cws_resolution(cws_folder,annotated_dir,output_
                  #
 
                 #print(len(os.listdir(os.path.join(annotated_dir, imagename, 'ROI_80_H', ii))))
-                for roi_i in glob.glob(os.path.join(annotated_dir, imagename, 'ROI_80_H1', ii, '*.jpg')):
+                for roi_i in glob.glob(os.path.join(annotated_dir, imagename, specific_dir, ii, '*.jpg')):
                     #print(roi_i)
                     roi_name = os.path.basename(roi_i)
 
                     if roi_name.endswith('.jpg'):
                         new_path = roi_name
-                        print(os.path.join(annotated_dir, imagename, 'ROI_80_H1', ii, roi_name))
-                        if os.path.isfile(os.path.join(annotated_dir, imagename, 'ROI_80_H1', ii, roi_name)):
+                        print(os.path.join(annotated_dir, imagename, specific_dir, ii, roi_name))
+                        if os.path.isfile(os.path.join(annotated_dir, imagename, specific_dir, ii, roi_name)):
                             imagelist.append(new_path)
                 print(imagelist)#   each ROI da image list belonging to individual slide
 
@@ -123,7 +123,7 @@ def get_SS1_dimension_image_from_cws_resolution(cws_folder,annotated_dir,output_
 
                     # print(cws_i, w_i, h_i)
 
-                    img_H = cv2.imread(os.path.join(annotated_dir, imagename, 'ROI_80_H1', ii, i))
+                    img_H = cv2.imread(os.path.join(annotated_dir, imagename, specific_dir, ii, i))
                     # img_H = cv2.cvtColor(img_H, cv2.COLOR_BGR2GRAY)
                     #img = cv2.imread(os.path.join(annotated_dir, imagename, i))
                     #im_mask = cv2.imread(os.path.join(annotated_dir, imagename, 'img_mask', ii, i))
@@ -182,48 +182,22 @@ def get_SS1_dimension_image_from_cws_resolution(cws_folder,annotated_dir,output_
                 #cv2.imwrite(os.path.join(output_dir, imagename, os.path.splitext(imagename)[0]+'_'+ii+"_Heam.png"), result_img)
                 #cv2.imwrite(os.path.join(output_dir, imagename, os.path.splitext(imagename)[0]+'_'+ii+"_Heam_white_bg.png"), roi_with_bg_img)
 
-            # new_roi_path = os.path.join(a)
-            #
-            # for roi in annotated_dir_i:
-            #     print(roi)
 
 
 
 
 
-
-            #print(roi)
-
-
-            # images = sorted(os.listdir(annotated_dir_i), key=natural_key)
-            # imagelist =[]
-            #
-            # for ii in images:
-            #     if ii.endswith('.jpg'):
-            #         new_path = os.path.join(annotated_dir, imagename, ii)
-            #         if os.path.isfile(new_path):
-            #             imagelist.append(ii)
-            # print(imagelist)
-            #
-# def stitch_tiles(cws_folder, annotated_dir, output_dir, refine_mask_dir, scale):
+# if __name__ == '__main__':
+#
 #     params = {
-#                 'cws_folder': os.path.normpath(r'D:\Projects\cbias-nap-AMY\cws'),
-#                 'annotated_dir': r'D:\Projects\cbias-nap-AMY\refined_workflow\cws',
-#                 'output_dir': r'D:\Projects\cbias-nap-AMY\low_res_per_ROI_80_TWF',
-#                 'refine_mask_dir': r'D:\Projects\cbias-nap-AMY\high_res_mask_per_ROI',
+#                 'cws_folder': os.path.normpath(r'D:\Projects\c-PMAT\src\c-PMAT\cws'),
+#                 'annotated_dir': r'D:\Projects\c-PMAT\src\c-PMAT\refined_workflow\cws',
+#                 'output_dir': r'D:\Projects\c-PMAT\src\c-PMAT\output_LRES_dir',
+#                 'refine_mask_dir': r'D:\Projects\c-PMAT\src\c-PMAT\output_LRES_dir',
+#                 'specific_dir':'ROI_40_H1',
 #                 'scale': 16
 #                }
 #
-#     get_SS1_dimension_image_from_cws_resolution(params['cws_folder'], params['annotated_dir'], params['output_dir'], params['refine_mask_dir'], params['scale'])
-
-#if __name__ == '__main__':
-
-    # params = {
-    #             'cws_folder': os.path.normpath(r'D:\Projects\cbias-nap-AMY\cws'),
-    #             'annotated_dir': r'D:\Projects\cbias-nap-AMY\refined_workflow\cws',
-    #             'output_dir': r'D:\Projects\cbias-nap-AMY\low_res_per_ROI_80_TWF',
-    #             'refine_mask_dir': r'D:\Projects\cbias-nap-AMY\high_res_mask_per_ROI',
-    #             'scale': 16
-    #            }
-    #
-    # get_SS1_dimension_image_from_cws_resolution(params['cws_folder'], params['annotated_dir'], params['output_dir'], params['refine_mask_dir'], params['scale'])
+#     get_SS1_dimension_image_from_cws_resolution(params['cws_folder'], params['annotated_dir'],
+#                                                 params['output_dir'], params['refine_mask_dir'],
+#                                                 params['specific_dir'], params['scale'])
