@@ -1,4 +1,4 @@
-![CI](https://github.com/IntegratedPathologyUnit-ICR/c-pmat/actions/workflows/test.yaml/badge.svg)
+[![DOI](https://zenodo.org/badge/DOI/10.1234/zenodo.14186274.svg)](https://doi.org/10.1234//zenodo.14186274)![CI](https://github.com/IntegratedPathologyUnit-ICR/c-pmat/actions/workflows/test.yaml/badge.svg)
 
 # c-PMAT : PSR STAIN PREPROCESSING WORKFLOW 
 
