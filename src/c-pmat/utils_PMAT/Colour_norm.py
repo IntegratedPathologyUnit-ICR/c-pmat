@@ -2,7 +2,7 @@
 #AIM: The PSR images encompass a wide range of RGB values, to progress to a one size fits all colour deconvolution we first
 # need to normalise the RGB values. To do so, we will extract the RGB values, plot them and take the avergae value to apply to all slides.
 
-import os
+
 import numpy as np
 from PIL import Image
 
