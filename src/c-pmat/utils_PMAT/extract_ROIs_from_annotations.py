@@ -251,12 +251,3 @@ def map_of_slides_and_annotations(input_slide_dir, wsi_tiles_dir, output_dir, fi
 #
 # map_of_slides_and_annotations(slide_directory, tiles_directory, output_directory, ext)
 
-# if __name__ == '__main__':
-#     params = {'input_slide_dir': r'D:\AMY\230803_annotated_PSR\batch 1',  # input slide dir
-#               'tiles_dir': r'D:\AMY\230803_PSR_ROI_tiles\cws',
-#               'output_dir': r'D:\AMY\230803_PSR_ROI_tiles\refined_workflow',  # output dir 1.img_mask,2.Mat_files
-#               'ext': '.ndpi',  # WSI format
-#               }
-#
-#     obj = GenerateWSIannotation_on_cws(**params)
-#     obj.generate_patch_of_annotated_tiles()
