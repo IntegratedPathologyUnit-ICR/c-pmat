@@ -113,8 +113,8 @@ def main():
             shape_type="Tree",
     ):
         try:
-            from utils_PMAT import extract_ROIs_from_annotations
-            extract_ROIs_from_annotations.map_of_slides_and_annotations(str(wsi_tiles_dir), str(output_dir), file_type, str(shape_type))
+            from utils_PMAT import extract_features
+            extract_features.get_patch_level_features(str(wsi_tiles_dir), str(output_dir), file_type, shape_type)
             print("Extraction completed!")
             print(f"Parameters: {wsi_tiles_dir}, {output_dir}, {file_type}, {shape_type}")
         except ModuleNotFoundError as e:
