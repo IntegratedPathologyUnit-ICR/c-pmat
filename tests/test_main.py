@@ -1,3 +1,4 @@
 import os
 import napari
-print(napari.__version__)
+def test_example():
+    assert True  # Simple placeholder test
