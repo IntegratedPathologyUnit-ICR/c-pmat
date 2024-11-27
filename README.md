@@ -50,7 +50,11 @@ It also helps to restitch the ROI's at a lower resolution for sanity check so it
 ## Extraction of features within c-PMAT framework
 Note: PMAT name was unavailable on pypi hence c-PMAT
 
-## Reference
+## Reference 
+## Citation
+
+
 
 1. https://doi.org/10.25418/crick.26565343
+2. https://zenodo.org/records/14186274
    
