@@ -31,7 +31,7 @@ jobs:
     #    flake8 . --count --exclude=./venv/lib/python3.9/site-packages/pip/_vendor/distlib/compat.py,./venv/lib/python3.9/site-packages/pip/_vendor/msgpack/ext.py --show-source --statistics
     - name: Test with pytest
       run: |
-        pytest
+        pytest tests
 #name: run main.py
 #
 #on:
