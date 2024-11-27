@@ -7,7 +7,8 @@ import sys
 import pathlib
 
 ### QWidget implementation from napIPUvis and napari-tma github references ###
-#P-MAT - a napari-based workflow for scale-independent quantification of the extracellular matrix and its topological scale-independent descriptors
+# P-MAT - a napari-based workflow for scale-independent quantification 
+# of the extracellular matrix and its topological scale-independent descriptors
 '''
 https://github.com/IntegratedPathologyUnit-ICR/POPIDD/tree/napari_tma
 
