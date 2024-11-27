@@ -47,8 +47,10 @@ Note: This code can be generically used for other brightfield images and extract
 It also helps to restitch the ROI's at a lower resolution for sanity check so it can be further processed by TWOMBLI
 
 
-## Extraction of features within PMAT framework
+## Extraction of features within c-PMAT framework
+Note: PMAT name was unavailable on pypi hence c-PMAT
 
 ## Reference
 
 1. https://doi.org/10.25418/crick.26565343
+   

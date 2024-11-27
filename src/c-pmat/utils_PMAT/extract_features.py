@@ -273,8 +273,6 @@ def get_patch_level_features(wsi_files, patch_mask_dir, file_type, shape_type):
     obj.extract_patch_level_features()
 
 
-wsi_files = r'D:\Projects\cbias-nap-AMY\cws'
-patch_mask_dir = r'D:\Projects\cbias-nap-AMY\refined_workflow\cws'
-get_patch_level_features(wsi_files, patch_mask_dir, file_type='.ndpi', shape_type="Branch")
+
 
 
