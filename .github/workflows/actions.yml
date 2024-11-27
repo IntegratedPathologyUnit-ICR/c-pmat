@@ -37,11 +37,11 @@ jobs:
         pip install coverage
         coverage run -m pytest
         coverage xml
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        fail_ci_if_error: true
+    # - name: Upload coverage to Codecov
+    #   uses: codecov/codecov-action@v3
+    #   with:
+    #     token: ${{ secrets.CODECOV_TOKEN }}
+    #     fail_ci_if_error: true
     
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
+    # - name: Upload coverage to Codecov
+    #   uses: codecov/codecov-action@v3
