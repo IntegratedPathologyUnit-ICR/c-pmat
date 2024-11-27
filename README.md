@@ -56,5 +56,5 @@ Note: PMAT name was unavailable on pypi hence c-PMAT
 
 
 1. https://doi.org/10.25418/crick.26565343
-2. https://zenodo.org/records/14186274
+2. https://zenodo.org/records/14231926
    
