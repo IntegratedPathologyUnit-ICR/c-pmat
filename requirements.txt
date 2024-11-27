@@ -91,7 +91,7 @@ napari-ome-zarr==0.5.2
 napari-plugin-engine==0.2.0
 napari-plugin-manager==0.1.0a2
 napari-svg==0.1.10
-napari-wsi==0.1.4
+napari-wsi==0.1.3
 nest-asyncio==1.6.0
 networkx==3.2.1
 nh3==0.2.18
