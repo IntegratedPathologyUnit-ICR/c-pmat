@@ -3,7 +3,7 @@
 ![CI/CD](https://github.com/IntegratedPathologyUnit-ICR/c-pmat/actions/workflows/actions.yml/badge.svg)
 ![PyPI version](https://badge.fury.io/py/c-pmat.svg)
 
-# c-PMAT : PSR STAIN PREPROCESSING WORKFLOW 
+# c-pmat : PSR STAIN PREPROCESSING WORKFLOW 
 
 c-pmat ***C***omputational ***P***reprocessing of extracellular ***mat***rix 
 
@@ -30,7 +30,7 @@ conda create -n pmat_test python=3.9 # Create a environment named pmat_test
 conda activate pmat_test
 #### Unzip the code from github to the Downloads directory ####
 cd Downloads
-cd c-pmat/src
+cd c-pmat-main/src
 pip install -r requirements.txt
 cd c-pmat
 python main.py
@@ -38,6 +38,9 @@ python main.py
 #### This opens the napari workflow orchestration window ####
 
 Before attempting to run, please download the openslide binaries for mac from https://openslide.org/download/
+## Make a new directory Tools within the c-pmat-main directory, to keep all the c-pmat related tools intact ##
+mkdir Tools
+/Users/macuserprofile/Downloads/c-pmat-main/Tools/openslide-bin-4.0.0.6-macos-arm64-x86_64/lib
 
 
 
