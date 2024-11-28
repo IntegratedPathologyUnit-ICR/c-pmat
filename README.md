@@ -28,12 +28,21 @@ pip install c-pmat==1.0.0
 ```
 conda create -n pmat_test python=3.9 # Create a environment named pmat_test
 conda activate pmat_test
-#### Unzip the code from github to the Downloads directory
+#### Unzip the code from github to the Downloads directory ####
 cd Downloads
-cd c-pmat/src/c-pmat
+cd c-pmat/src
+pip install -r requirements.txt
+cd c-pmat
 python main.py
 
+#### This opens the napari workflow orchestration window ####
+
+Before attempting to run, please download the openslide binaries for mac from https://openslide.org/download/
+
+
+
 ```
+
 
 ## Understanding data preparation
 
