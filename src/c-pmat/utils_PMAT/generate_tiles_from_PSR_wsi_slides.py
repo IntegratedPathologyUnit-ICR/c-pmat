@@ -238,9 +238,9 @@ def perform_tiling(slide_directory, output_directory, extension, num_processes):
       obj.generate_params()
 
 
-slides = r'D:\Projects\cbias-nap-AMY\slides'
-output = r'D:\Projects\cbias-nap-AMY\cws'
+#slides = r'D:\Projects\cbias-nap-AMY\slides'
+#output = r'D:\Projects\cbias-nap-AMY\cws'
 
 #perform_tiling('./slides', './output', '.ndpi', 1)
-perform_tiling(slides, output, '.ndpi', 1)
+#perform_tiling(slides, output, '.ndpi', 1)
 
