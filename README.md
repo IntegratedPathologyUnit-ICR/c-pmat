@@ -41,9 +41,16 @@ Before attempting to run, please download the openslide binaries for mac from ht
 ## Make a new directory Tools within the c-pmat-main directory, to keep all the c-pmat related tools intact ##
 mkdir Tools
 
-### Lets say your name is Sam Joe and your mac user profile name is sam, then you will use sam where it says macuserprofile ###
+### Assuming you have Regions of interest annotations performed in Imagescope ###
+The steps below are needed. If you do not have any region annotations, you can skip them.
+### Lets say your name is Sam Joe and your mac user profile name is sam, then you will use sam where it says macuserprofile in the below path ###
 
-/Users/macuserprofile/Downloads/c-pmat-main/Tools/openslide-bin-4.0.0.6-macos-arm64-x86_64/lib
+Use a texteditor like sublimetext and drag and drop extract_ROIs_from_annotations.py into the editor and change the line 4
+OPENSLIDE_PATH = r'C:\Tools\openslide-win64-20231011\bin' to
+
+OPENSLIDE_PATH = r'/Users/macuserprofile/Downloads/c-pmat-main/Tools/openslide-bin-4.0.0.6-macos-arm64-x86_64/lib'
+
+and save the script
 
 
 
