@@ -18,7 +18,9 @@ extract and quantify extracellular matrix features.
 ## Installation from pypi
 ```
 pip install c-pmat==1.0.0
+
 ```
+[![PyPI version](https://badge.fury.io/py/c-pmat.svg)]([https://pypi.org/project/your-package-name](https://pypi.org/project/c-pmat/)
 
 ## Understanding data preparation
 
