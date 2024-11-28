@@ -56,6 +56,9 @@ class GEN_TILES(object):
 
         for s_n, slide_name in enumerate(slide_names_name_list):
 
+            if not slide_name.endswith(self.ext):
+                continue
+            print(slide_name, self.ext)
             print('Process number:{}...Creating patches from slide {}... {}/{}'.format(process_num, slide_name, s_n,
                                                                                        process_num))
 
@@ -103,7 +106,7 @@ class GEN_TILES(object):
     def generate_params(self):
 
         for slide_name in os.listdir(self.input_dir):
-            if not slide_name.endswith('.ndpi'):
+            if not slide_name.endswith(self.ext):
                 continue
             if os.path.exists(
                     os.path.join(self.output_dir, os.path.basename(slide_name))) is False:
@@ -235,9 +238,9 @@ def perform_tiling(slide_directory, output_directory, extension, num_processes):
       obj.generate_params()
 
 
-# slides = r'D:\Projects\HE_Int_ts_cc\Sarcoma\Well_Diff\slides\new_slides'
-# output = r'D:\Projects\HE_Int_ts_cc\Sarcoma\Well_Diff\tiles'
-#
-# #perform_tiling('./slides', './output', '.ndpi', 1)
-# perform_tiling(slides, output, '.ndpi', 1)
+slides = r'D:\Projects\cbias-nap-AMY\slides'
+output = r'D:\Projects\cbias-nap-AMY\cws'
+
+#perform_tiling('./slides', './output', '.ndpi', 1)
+perform_tiling(slides, output, '.ndpi', 1)
 
