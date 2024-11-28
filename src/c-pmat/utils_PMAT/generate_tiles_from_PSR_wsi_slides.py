@@ -56,6 +56,10 @@ class GEN_TILES(object):
 
         for s_n, slide_name in enumerate(slide_names_name_list):
 
+            if not slide_name.endswith(self.ext):
+                continue
+            print(slide_name)
+
             print('Process number:{}...Creating patches from slide {}... {}/{}'.format(process_num, slide_name, s_n,
                                                                                        process_num))
 
