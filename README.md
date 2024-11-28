@@ -15,6 +15,8 @@ perform downstream analysis.
 Through the usage of the step by step process, user will be able to preprocess,
 extract and quantify extracellular matrix features.
 
+## Installation from pypi
+'pip install c-pmat==1.0.1'
 
 ## Understanding data preparation
 
