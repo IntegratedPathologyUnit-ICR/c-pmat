@@ -1,4 +1,4 @@
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14231926.svg)](https://doi.org/10.5281/zenodo.14231926)![CI/CD](https://github.com/IntegratedPathologyUnit-ICR/c-pmat/actions/workflows/actions.yml/badge.svg)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14231926.svg)](https://doi.org/10.5281/zenodo.14231926)![CI/CD](https://github.com/IntegratedPathologyUnit-ICR/c-pmat/actions/workflows/actions.yml/badge.svg)[![PyPI version](https://badge.fury.io/py/c-pmat.svg)]([(https://pypi.org/project/c-pmat/])
 
 # c-PMAT : PSR STAIN PREPROCESSING WORKFLOW 
 
@@ -20,7 +20,7 @@ extract and quantify extracellular matrix features.
 pip install c-pmat==1.0.0
 
 ```
-[![PyPI version](https://badge.fury.io/py/c-pmat.svg)]([https://pypi.org/project/your-package-name](https://pypi.org/project/c-pmat/)
+
 
 ## Understanding data preparation
 
