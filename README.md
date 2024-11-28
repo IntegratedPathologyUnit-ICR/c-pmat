@@ -40,6 +40,9 @@ python main.py
 Before attempting to run, please download the openslide binaries for mac from https://openslide.org/download/
 ## Make a new directory Tools within the c-pmat-main directory, to keep all the c-pmat related tools intact ##
 mkdir Tools
+
+### Lets say your name is Sam Joe and your mac user profile name is sam, then you will use sam where it says macuserprofile ###
+
 /Users/macuserprofile/Downloads/c-pmat-main/Tools/openslide-bin-4.0.0.6-macos-arm64-x86_64/lib
 
 
