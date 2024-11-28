@@ -24,6 +24,16 @@ pip install c-pmat==1.0.0
 
 ```
 
+## Usage on command terminal for Mac Users
+```
+conda create -n pmat_test python=3.9 # Create a environment named pmat_test
+conda activate pmat_test
+#### Unzip the code from github to the Downloads directory
+cd Downloads
+cd c-pmat/src/c-pmat
+python main.py
+
+```
 
 ## Understanding data preparation
 
