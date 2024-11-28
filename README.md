@@ -1,4 +1,6 @@
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14231926.svg)](https://doi.org/10.5281/zenodo.14231926)![CI/CD](https://github.com/IntegratedPathologyUnit-ICR/c-pmat/actions/workflows/actions.yml/badge.svg)![PyPI version](https://badge.fury.io/py/c-pmat.svg)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14231926.svg)](https://doi.org/10.5281/zenodo.14231926)
+![CI/CD](https://github.com/IntegratedPathologyUnit-ICR/c-pmat/actions/workflows/actions.yml/badge.svg)![PyPI version](https://badge.fury.io/py/c-pmat.svg)
 
 # c-PMAT : PSR STAIN PREPROCESSING WORKFLOW 
 
