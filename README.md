@@ -7,7 +7,7 @@
 
 c-pmat ***C***omputational ***P***reprocessing of extracellular ***mat***rix 
 
-c-pmat is a interactive user interface, allowing user to easily preprocess, quality control (QC) 
+c-pmat is an interactive user interface, allowing user to easily preprocess, quality control (QC) 
 and generate quantitative extracellular matrix features.
 
 Preprocess constitutes generating tiles and the corresponding metadata from the whole slide images.
