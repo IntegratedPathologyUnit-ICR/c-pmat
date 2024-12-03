@@ -66,10 +66,14 @@ class GenerateWSIannotation_on_cws(object):
     def generate_patch_of_annotated_tiles(self):
 
         # Annotated tiles positive images will be saved in img_mask directory
-        # Background tiles will be saved in Mat_files directory
-        # .mat files from this will be used to generate tf records file
+        # List comprehension to exclude any hidden files
+        #
 
-        file_names_list =[fname for fname in os.listdir(self.input_slide_dir) if fname.endswith(self.ext) and (fname.startswith('BCPP') or fname.startswith('RADIO') or fname.startswith('PLUMMB')) is True]
+        file_names_list =[fname for fname in os.listdir(self.input_slide_dir)
+                          if fname.endswith(self.ext)
+                        and (fname.startswith('BCPP') or fname.startswith('RADIO') or fname.startswith('PLUMMB'))
+                        and not fname.startswith('._')
+                        and not fname.startswith('.') is True]
 
         cws_dir = "cws"
 
