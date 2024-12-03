@@ -11,8 +11,7 @@ if platform.system() == 'Windows':
     if hasattr(os, 'add_dll_directory'):
         with os.add_dll_directory(OPENSLIDE_PATH):
             import openslide
-    else:
-        import openslide
+   
 elif platform.system() == 'Darwin':
     # macOS
     import openslide  # OpenSlide should be accessible if installed via Homebrew
