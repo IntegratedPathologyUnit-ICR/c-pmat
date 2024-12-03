@@ -2,14 +2,33 @@ import os
 import numpy as np
 import cv2
 OPENSLIDE_PATH = r'C:\Tools\openslide-win64-20231011\bin'
-
 import os
-if hasattr(os, 'add_dll_directory'):
+import platform
+
+if platform.system() == 'Windows':
     # Windows
-    with os.add_dll_directory(OPENSLIDE_PATH):
+    OPENSLIDE_PATH = r'C:\Tools\openslide-win64-20231011\bin'
+    if hasattr(os, 'add_dll_directory'):
+        with os.add_dll_directory(OPENSLIDE_PATH):
+            import openslide
+    else:
         import openslide
+elif platform.system() == 'Darwin':
+    # macOS
+    import openslide  # OpenSlide should be accessible if installed via Homebrew
 else:
+    # Other platforms (Linux)
     import openslide
+
+print("OpenSlide imported successfully!")
+
+
+# if hasattr(os, 'add_dll_directory'):
+#     # Windows
+#     with os.add_dll_directory(OPENSLIDE_PATH):
+#         import openslide
+# else:
+#     import openslide
 #
 #import openslide
 import xml.dom.minidom
