@@ -37,8 +37,10 @@ python main.py
 
 #### This opens the napari workflow orchestration window ####
 
-Before attempting to run, please download the openslide binaries for mac from https://openslide.org/download/
-## Make a new directory Tools within the c-pmat-main directory, to keep all the c-pmat related tools intact ##
+Before attempting to run, please download the openslide binaries for mac
+from https://openslide.org/download/
+## Make a new directory Tools within the c-pmat-main directory, to keep all the ####
+## c-pmat related tools intact ##
 mkdir Tools
 
 ### Assuming you have Regions of interest annotations performed in Imagescope ###
