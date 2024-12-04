@@ -7,7 +7,7 @@ import platform
 
 if platform.system() == 'Windows':
     # Windows
-    OPENSLIDE_PATH = r'C:\Tools\openslide-win64-20231011\bin'
+
     if hasattr(os, 'add_dll_directory'):
         with os.add_dll_directory(OPENSLIDE_PATH):
             import openslide

@@ -79,20 +79,18 @@ def branchpoint_lut_PN(skel_image):
 
     dst = dst * 255
 
-    # plt.imshow(dst)
-    # plt.show()
     return dst
 
 
 class feature_extraction(object):
 
     def __init__(self,
-                 wsi_files,
+                 wsi_tiles_dir,
                  patch_mask_dir,
                  file_type,
                  shape_type
                  ):
-        self.wsi_files = wsi_files
+        self.wsi_tiles_dir = wsi_tiles_dir
         self.patch_mask_dir = patch_mask_dir
         self.file_type = file_type
         self.shape_type = shape_type
@@ -102,23 +100,24 @@ class feature_extraction(object):
         # Check if the value is the string "Tree"
         if isinstance(self.shape_type, str) and self.shape_type == "Tree":
             print("Extraction of Tree descriptors and Proceeding with feature extraction.")
+            print(self.wsi_tiles_dir)
 
-            file_names_list = [fname for fname in os.listdir(wsi_files) if fname.endswith(self.file_type) and (
+            file_names_list = [fname for fname in os.listdir(self.wsi_tiles_dir) if fname.endswith(self.file_type) and (
                     fname.startswith('BCPP') or fname.startswith('RADIO') or fname.startswith('PLUMMB')) is True]
 
             for slide in file_names_list:
 
-                param = pickle.load(open(os.path.join(self.wsi_files, slide, 'param.p'), 'rb'))
+                param = pickle.load(open(os.path.join(self.wsi_tiles_dir, slide, 'param.p'), 'rb'))
 
-                results_dir = os.path.join(self.patch_mask_dir, slide, 'tree')
-                results_overlay_dir = os.path.join(self.patch_mask_dir, slide, 'tree_overlay_img')
+                results_dir = os.path.join(self.patch_mask_dir, 'cws', slide, 'tree')
+                results_overlay_dir = os.path.join(self.patch_mask_dir, 'cws', slide, 'tree_overlay_img')
 
                 if os.path.exists(results_dir) is False:
                     os.makedirs(results_dir)
                 if os.path.exists(results_overlay_dir) is False:
                     os.makedirs(results_overlay_dir)
-                roi_df = pd.DataFrame(columns=['file_name', 'mask', 'sk_ratio'])
-                for r_ind, roi_n in enumerate(os.listdir(os.path.join(self.patch_mask_dir, slide, 'ROI_40_H1'))):
+                roi_df = pd.DataFrame(columns=['file_name', 'mask', 'tree_count', 'tree_ratio'])
+                for r_ind, roi_n in enumerate(os.listdir(os.path.join(self.patch_mask_dir, 'cws', slide, 'ROI_80_H1'))):
 
                     if os.path.exists(os.path.join(results_dir, roi_n)) is False:
                         os.makedirs(os.path.join(results_dir, roi_n))
@@ -127,12 +126,13 @@ class feature_extraction(object):
                         os.makedirs(os.path.join(results_overlay_dir, roi_n))
 
                     print(roi_n)
+                    tree_a = 0
                     sk_sum = 0
                     mask_sum = 0
-                    stat_da_df = pd.DataFrame(columns=['file_name', 'mask', 'sk_ratio'])
+                    stat_da_df = pd.DataFrame(columns=['file_name', 'mask', 'tree_count', 'tree_ratio'])
 
-                    for ind, da_n in enumerate(os.listdir(os.path.join(patch_mask_dir, slide, 'ROI_40_H1', roi_n))):
-                        img = cv2.imread(os.path.join(patch_mask_dir, slide, 'ROI_40_H1', roi_n, da_n))
+                    for ind, da_n in enumerate(os.listdir(os.path.join(self.patch_mask_dir, 'cws', slide, 'ROI_80_H1', roi_n))):
+                        img = cv2.imread(os.path.join(self.patch_mask_dir, 'cws', slide, 'ROI_80_H1', roi_n, da_n))
                         if not hasattr(img, 'shape') or img.shape is None:
                             continue
                         else:
@@ -152,60 +152,70 @@ class feature_extraction(object):
                             img_overlay = img.copy()
 
                             _, contours, hierarchy = cv2.findContours(sk8, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-                            cv2.drawContours(img_overlay, contours, -1, (0, 255, 0), 3)
+                            cv2.drawContours(img_overlay, contours, -1, (0, 255, 0), 1)
                             print(os.path.join(results_overlay_dir, roi_n, da_n.split('.jpg')[0] + "_skel.png"))
-                            cv2.imwrite(os.path.join(results_overlay_dir, roi_n, da_n.split('.jpg')[0] + "_skel.png"), sk8)
+                            # Filter contours with an area less than 50
+                            sk8_filtered_mask = np.zeros_like(sk8)  # Create a blank mask to draw filtered contours
+                            for contour in contours:
+                                area = cv2.contourArea(contour)
+                                if area >= 100:
+                                    # Draw the contour on the filtered mask
+                                    cv2.drawContours(sk8_filtered_mask, [contour], -1, 255, thickness=1, lineType=cv2.LINE_8)
+
+
+                            cv2.imwrite(os.path.join(results_overlay_dir, roi_n, da_n.split('.jpg')[0] + "_skel.png"), sk8_filtered_mask)
                             # cv2.imwrite(os.path.join(results_overlay_dir, slide, roi_n, da_n.split('.jpg')[0] + "_skel" + ".png"), img_overlay)
-                            sk_mask = cv2.countNonZero(sk8)
+                            sk_mask = cv2.countNonZero(sk8_filtered_mask)
 
 
-                            im_mask = cv2.imread(os.path.join(patch_mask_dir, slide, 'img_mask', roi_n, da_n))
+                            im_mask = cv2.imread(os.path.join(self.patch_mask_dir, 'cws', slide, 'img_mask', roi_n, da_n))
                             g_img_mask = cv2.cvtColor(im_mask, cv2.COLOR_RGB2GRAY)
                             thresh, im_mk = cv2.threshold(g_img_mask, 100, 255, cv2.THRESH_BINARY)
                             m_cnt = cv2.countNonZero(im_mk)
                             sk_core_mask_ratio = (sk_mask * 1e6) / (m_cnt * 0.4428 * 0.4428)  ###core_mask###
                             sk_r_f_value = round(sk_core_mask_ratio, 2)
                             # sk_r_f_value = "{:.2f}".format(sk_core_mask_ratio)
-                            print(sk_r_f_value)
+                            print(sk_r_f_value, sk_mask)
+                            tree_a += sk_mask
                             sk_sum += sk_r_f_value
                             mask_sum += m_cnt
 
-                            stat_da_df.loc[ind, ['file_name', 'mask', 'sk_ratio']] = [
-                                os.path.join(slide, 'ROI_40_H1', roi_n, da_n), m_cnt, sk_r_f_value]
+                            stat_da_df.loc[ind, ['file_name', 'mask', 'tree_count', 'tree_ratio']] = [
+                                os.path.join(slide, 'ROI_80_H1', roi_n, da_n), m_cnt, sk_mask, sk_r_f_value]
 
-                            stat_da_df.to_csv(os.path.join(results_overlay_dir, roi_n, 'all_da.csv'), index=False)
+                            stat_da_df.to_csv(os.path.join(results_overlay_dir, roi_n, 'all_tree_da.csv'), index=False)
 
                             # get_tree_score_on_tiles(wsi_files, patch_mask_dir, slide, da_n, )
-                    print(os.path.join(slide, 'ROI_40_H1', roi_n), sk_sum, mask_sum)
+                    # print(os.path.join(slide, 'ROI_80_H1', roi_n), tree_a, sk_sum, mask_sum)
                     print(stat_da_df)
-                    roi_df.loc[r_ind, ['file_name', 'mask', 'sk_ratio']] = [
-                        os.path.join(slide, 'ROI_40_H1', roi_n), sk_sum, mask_sum]
-                roi_df.to_csv(os.path.join(results_overlay_dir, 'all_roi.csv'), index=False)
+                    roi_df.loc[r_ind, ['file_name', 'mask', 'tree_count', 'tree_ratio']] = [
+                        os.path.join(slide, 'ROI_80_H1', roi_n), mask_sum, tree_a, sk_sum]
+                roi_df.to_csv(os.path.join(results_overlay_dir, 'all_roi_tree.csv'), index=False)
             pass
         # Check if the value is the string "Branch"
         elif isinstance(self.shape_type, str) and self.shape_type == "Branch":
             print("Extraction of Branch descriptors and Proceeding with feature extraction.")
 
-            file_names_list = [fname for fname in os.listdir(wsi_files) if fname.endswith(self.file_type) and (
+            file_names_list = [fname for fname in os.listdir(self.wsi_tiles_dir) if fname.endswith(self.file_type) and (
                     fname.startswith('BCPP') or fname.startswith('RADIO') or fname.startswith('PLUMMB')) is True]
 
             for slide in file_names_list:
 
-                param = pickle.load(open(os.path.join(self.wsi_files, slide, 'param.p'), 'rb'))
+                param = pickle.load(open(os.path.join(self.wsi_tiles_dir, slide, 'param.p'), 'rb'))
 
 
-                results_dir = os.path.join(self.patch_mask_dir, slide, 'tree')
-                results_overlay_dir = os.path.join(self.patch_mask_dir, slide, 'tree_overlay_img')
+                results_dir = os.path.join(self.patch_mask_dir, 'cws', slide, 'tree')
+                results_overlay_dir = os.path.join(self.patch_mask_dir, 'cws', slide, 'tree_overlay_img')
 
                 if os.path.exists(results_dir) is False:
                     os.makedirs(results_dir)
                 if os.path.exists(results_overlay_dir) is False:
                     os.makedirs(results_overlay_dir)
 
-                roi_df = pd.DataFrame(columns=['file_name', 'mask', 'b_ratio'])
-                if os.path.isdir(os.path.join(self.patch_mask_dir, slide, 'tree_overlay_img')):
+                roi_df = pd.DataFrame(columns=['file_name', 'mask', 'branch_area', 'branch_ratio'])
+                if os.path.isdir(os.path.join(self.patch_mask_dir, 'cws', slide, 'tree_overlay_img')):
 
-                    for r_ind, roi_n in enumerate(os.listdir(os.path.join(self.patch_mask_dir, slide, 'tree_overlay_img'))):
+                    for r_ind, roi_n in enumerate(os.listdir(os.path.join(self.patch_mask_dir, 'cws', slide, 'tree_overlay_img'))):
 
                         if roi_n.endswith('.csv'):
                             continue
@@ -217,14 +227,16 @@ class feature_extraction(object):
                         if os.path.exists(os.path.join(results_overlay_dir, roi_n)) is False:
                             os.makedirs(os.path.join(results_overlay_dir, roi_n))
 
+                        branch_a = 0
                         bk_sum = 0
                         mask_sum = 0
-                        stat_da_df = pd.DataFrame(columns=['file_name', 'mask', 'b_ratio'])
+                        stat_da_df = pd.DataFrame(columns=['file_name', 'mask', 'branch_area', 'branch_ratio'])
 
-                        for ind, da_n in enumerate(os.listdir(os.path.join(patch_mask_dir, slide, 'tree_overlay_img', roi_n))):
+                        for ind, da_n in enumerate(os.listdir(os.path.join(self.patch_mask_dir, 'cws', slide, 'tree_overlay_img', roi_n))):
                             if da_n.endswith('.png'):
+                                print(da_n)
 
-                                sk8_img = cv2.imread(os.path.join(patch_mask_dir, slide, 'tree_overlay_img', roi_n, da_n))
+                                sk8_img = cv2.imread(os.path.join(self.patch_mask_dir, 'cws', slide, 'tree_overlay_img', roi_n, da_n))
                                 if not hasattr(sk8_img, 'shape') or sk8_img.shape is None:
                                     continue
                                 else:
@@ -233,27 +245,52 @@ class feature_extraction(object):
                                     thresh, im = cv2.threshold(g_img, 100, 255, cv2.THRESH_BINARY)
                                     ######
                                     dst = branchpoint_lut_PN(im)
-                                    b_mask = cv2.countNonZero(dst)
+                                    print(dst.dtype, dst.shape)
+                                    dst8 = dst * 255
 
-                                    im_mask = cv2.imread(os.path.join(patch_mask_dir, slide, 'img_mask', roi_n, da_n.split('_')[0]+'.jpg'))
+                                    dst8 = dst8.astype('uint8')
+                                    _, contours, hierarchy = cv2.findContours(dst8, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+                                    dst8_branch = np.zeros_like(g_img)
+                                    cv2.drawContours(dst8_branch, contours, -1, (255), 5)
+                                    ## branch mask before filtering ##
+                                    b_mask_bf = cv2.countNonZero(dst8)
+                                    #
+                                    # b_mask_filtered = np.zeros_like(
+                                    #     b_mask)  # Create a blank mask to draw filtered contours
+                                    # for contour in contours:
+                                    #     area = cv2.contourArea(contour)
+                                    #     if area >= 50:
+                                    #         # Draw the contour on the filtered mask
+                                    #         cv2.drawContours(b_mask_filtered, [contour], -1, 255,
+                                    #                          thickness=1)
+
+                                    cv2.imwrite(
+                                        os.path.join(results_overlay_dir, roi_n, da_n.split('_')[0] + "_brch.png"),
+                                        dst8_branch)
+                                    # cv2.imwrite(os.path.join(results_overlay_dir, slide, roi_n, da_n.split('.jpg')[0] + "_skel" + ".png"), img_overlay)
+                                    b_mask = cv2.countNonZero(dst8)
+
+                                    im_mask = cv2.imread(os.path.join(self.patch_mask_dir, 'cws', slide, 'img_mask', roi_n, da_n.split('_')[0]+'.jpg'))
                                     g_img_mask = cv2.cvtColor(im_mask, cv2.COLOR_RGB2GRAY)
                                     thresh, im_mk = cv2.threshold(g_img_mask, 100, 255, cv2.THRESH_BINARY)
+                                    im_mk = im_mk.astype('uint8')
                                     m_cnt = cv2.countNonZero(im_mk)
                                     b_core_mask_ratio = (b_mask * 1e6) / (m_cnt * 0.4428 * 0.4428)  ###core_mask###
                                     b_r_f_value = round(b_core_mask_ratio, 2)
                                     # sk_r_f_value = "{:.2f}".format(sk_core_mask_ratio)
-                                    print(b_r_f_value)
+                                    print(b_r_f_value, b_mask)
+                                    branch_a += b_mask
                                     bk_sum += b_r_f_value
                                     mask_sum += m_cnt
 
-                                    stat_da_df.loc[ind, ['file_name', 'mask', 'b_ratio']] = [
-                                        os.path.join(slide, 'ROI_40_H1', roi_n, da_n), m_cnt, b_r_f_value]
+                                    stat_da_df.loc[ind, ['file_name', 'mask', 'branch_area', 'branch_ratio']] = [
+                                        os.path.join(slide, 'ROI_80_H1', roi_n, da_n), m_cnt, b_mask, b_r_f_value]
 
-                                    stat_da_df.to_csv(os.path.join(results_overlay_dir, roi_n, 'all_b_da.csv'), index=False)
+                                    stat_da_df.to_csv(os.path.join(results_overlay_dir, roi_n, 'all_brch_da.csv'), index=False)
 
-                                roi_df.loc[r_ind, ['file_name', 'mask', 'b_ratio']] = [
-                                os.path.join(slide, 'ROI_40_H1', roi_n), bk_sum, mask_sum]
-                                roi_df.to_csv(os.path.join(results_overlay_dir, 'all_b_roi_desc.csv'), index=False)
+                                roi_df.loc[r_ind, ['file_name', 'mask', 'branch_area', 'branch_ratio']] = [
+                                os.path.join(slide, 'ROI_80_H1', roi_n), mask_sum, branch_a, bk_sum]
+                                roi_df.to_csv(os.path.join(results_overlay_dir, 'all_roi_brch.csv'), index=False)
 
                             else:# for other file types
                                 continue
@@ -262,8 +299,8 @@ class feature_extraction(object):
 
 
 
-def get_patch_level_features(wsi_files, patch_mask_dir, file_type, shape_type):
-    params_keys = {'wsi_files': wsi_files,
+def get_patch_level_features(wsi_tiles_dir, patch_mask_dir, file_type, shape_type):
+    params_keys = {'wsi_tiles_dir': wsi_tiles_dir,
                    'patch_mask_dir': patch_mask_dir,
                    'file_type': file_type,
                    'shape_type': shape_type

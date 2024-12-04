@@ -30,7 +30,6 @@ def main():
             wsi_tiles_dir=pathlib.Path("cws"),
             file_type=pathlib.Path(".ndpi"),
             num_process="1",
-            # loadMaskTS=bool
             ):
         try:
             from utils_PMAT import generate_tiles_from_PSR_wsi_slides
@@ -76,7 +75,7 @@ def main():
         high_res_dir={"widget_type": "FileEdit", "mode": "d"},
         specific_dir={"widget_type": "ComboBox",
                       "choices": ["ROI_80_AFC", "ROI_80_H1", "ROI_80_PS1", "ROI_60_AFC", "ROI_60_H1", "ROI_60_PS1",
-                                  "ROI_40_AFC", "ROI_40_H1", "ROI_40_PS1"]},
+                                  "ROI_40_AFC", "ROI_80_H1", "ROI_40_PS1"]},
         scale={"widget_type": "ComboBox", "choices": ["16", "8", "4"]},
         call_button="Run"  # This adds a Run button to the widget
     )
@@ -126,25 +125,27 @@ def main():
 
     tab_widget = QTabWidget()
     #
-
-    tab_GT = QWidget()#tile
+    ## tile ##
+    tab_GT = QWidget()
     gt_layout = QVBoxLayout()
     tab_GT.setLayout(gt_layout)
     gt_layout.addWidget(wGTauto.native)
 
 
-    # %%
-    tab_TS = QWidget() #Annotated tissue ROI selection
+    # %%#Annotated tissue ROI selection ##
+    tab_TS = QWidget()
     ts_layout = QVBoxLayout()
     tab_TS.setLayout(ts_layout)
     ts_layout.addWidget(wTSauto.native)
 
-    tab_ST = QWidget()#stitch
+    # stitch #
+    tab_ST = QWidget()
     st_layout = QVBoxLayout()
     tab_ST.setLayout(st_layout)
     st_layout.addWidget(wSTauto.native)
 
-    tab_SF = QWidget()  # stitch
+    # Feature descriptives #
+    tab_SF = QWidget()
     sf_layout = QVBoxLayout()
     tab_SF.setLayout(sf_layout)
     sf_layout.addWidget(wSFauto.native)
@@ -160,7 +161,7 @@ def main():
     tab_widget.setFixedHeight(500)
     # tab_widget1.setFixedHeight(400)
     viewer.window.add_dock_widget(
-        tab_widget, name="ECM Process pipeline", area="right",
+        tab_widget, name="ECM c-pmat pipeline", area="right",
         add_vertical_stretch=False, tabify=True)
 
 
