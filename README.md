@@ -65,6 +65,9 @@ else:
     import openslide
 
 print("OpenSlide imported successfully!")
+
+This should run openslide in your pmat_test environment and not give any errors
+if the library path is available.
 ```
 
 ## Usage on command terminal for Mac Users
