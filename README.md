@@ -20,8 +20,51 @@ extract and quantify extracellular matrix features.
 
 ## Installation from pypi https://pypi.org/project/c-pmat/
 ```
-pip install c-pmat==1.0.0
+pip install c-pmat==1.0.2
 
+
+```
+## Usage on command terminal of Anaconda prompt in Windows ##
+```
+conda create -n pmat_test python=3.9 # Create a environment named pmat_test
+conda activate pmat_test
+#### Unzip the code from github to the Downloads directory ####
+cd Downloads
+cd c-pmat-main/src
+pip install -r requirements.txt
+cd c-pmat
+python main.py
+## Make a new directory Tools within the c-pmat-main directory, to keep all the ####
+## c-pmat related tools intact ##
+mkdir Tools
+Download windows binaries from the site https://openslide.org/download/
+Look for Binaraies and download the relevant version and in your script
+you can add them so it can call the openslide relevanct functions
+cd Downloads\c-pmat-main\Tools\openslide-win64-20231011\bin
+
+## To Sucessfully test the openslide libraries are working in your environment ##
+Open a anaconda command prompt
+conda activate pmat_test
+python
+import os
+OPENSLIDE_PATH=r'C:\Downloads\c-pmat-main\Tools\openslide-win64-20231011\bin
+import platform
+
+if platform.system() == 'Windows':
+    # Windows
+
+    if hasattr(os, 'add_dll_directory'):
+        with os.add_dll_directory(OPENSLIDE_PATH):
+            import openslide
+   
+elif platform.system() == 'Darwin':
+    # macOS
+    import openslide  # OpenSlide should be accessible if installed via Homebrew
+else:
+    # Other platforms (Linux)
+    import openslide
+
+print("OpenSlide imported successfully!")
 ```
 
 ## Usage on command terminal for Mac Users
@@ -37,23 +80,8 @@ python main.py
 
 #### This opens the napari workflow orchestration window ####
 
-Before attempting to run, please download the openslide binaries for mac
+Before attempting to run, please install openslide for mac
 from https://openslide.org/download/
-## Make a new directory Tools within the c-pmat-main directory, to keep all the ####
-## c-pmat related tools intact ##
-mkdir Tools
-
-### Assuming you have Regions of interest annotations performed in Imagescope ###
-The steps below are needed. If you do not have any region annotations, you can skip them.
-### Lets say your name is Sam Joe and your mac user profile name is sam, then you will use sam where it says macuserprofile in the below path ###
-
-Use a texteditor like sublimetext and drag and drop extract_ROIs_from_annotations.py into the editor and change the line 4
-OPENSLIDE_PATH = r'C:\Tools\openslide-win64-20231011\bin' to
-
-OPENSLIDE_PATH = r'/Users/macuserprofile/Downloads/c-pmat-main/Tools/openslide-bin-4.0.0.6-macos-arm64-x86_64/lib'
-
-and save the script
-
 
 
 ```
