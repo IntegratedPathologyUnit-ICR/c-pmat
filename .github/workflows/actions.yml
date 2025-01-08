@@ -3,7 +3,7 @@ name: Python CI
 on: [push]
 jobs:
   build:
-    runs-on: [ubuntu-22.04, macos-latest]
+    runs-on: [ubuntu-22.04]
     strategy:
       matrix:
         python-version: [3.9, "3.10", "3.11", "3.12"]
