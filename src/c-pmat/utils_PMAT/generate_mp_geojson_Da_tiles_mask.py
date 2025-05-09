@@ -292,9 +292,9 @@ def save_annotated_tiles(slide_directory, geojson_directory, output_directory, e
 if __name__ == "__main__":
     # Example usage:
     save_annotated_tiles(
-        slide_directory=r"R:\TRIALS IHC-mIF images\IHC images\Asteroid\KI67\Ki67 2025",
-        geojson_directory=r"R:\TRIALS IHC-mIF images\IHC images\Asteroid\KI67\Analysis Ki67\Annotations_by_case\2025 new cases\Annotations full slide",
-        output_directory=r"R:\TRIALS IHC-mIF images\IHC images\Asteroid\KI67\Analysis Ki67\Annotated_da_tiles_with_mask",
+        slide_directory=r"2025",
+        geojson_directory=r"Annotations full slide",
+        output_directory=r"Annotated_da_tiles_with_mask",
         extension=".ndpi",
         num_processes=4,  # Using 4 processes for parallel execution
         tile_size=2000
