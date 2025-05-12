@@ -117,8 +117,8 @@ corresponding to each ROI.
 Note: This code can be generically used for other brightfield images and extraction of the annotations performed on Imagescope.
 
 ## Workflow Steps
-1. Generate Tiles from each slides (computationally effective if num process is set to be greater than 1.)
-2. Generate ROI regions from the annotation (Use this tab functionality only if you have annotated regions)
+1. Generate Tiles from each slides (computationally effective if num process is set to be greater than 1 when you have more than 3 slide to process)
+2. Generate ROI regions from the annotation (Use this tab/functionality only if you have annotated regions) # Annotations were used in the current project. If you dont have annotations, proceed to next tab after step 1.
 3. Stitch processed outputs (Sanity check on the low resolution and high resolution images if needed. Generally recommended when you have more than 3 slide to process)
 4. Feature descriptor extraction
 
