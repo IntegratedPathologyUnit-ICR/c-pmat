@@ -116,6 +116,21 @@ corresponding to each ROI.
 
 Note: This code can be generically used for other brightfield images and extraction of the annotations performed on Imagescope.
 
+## Workflow Steps
+1. Generate Tiles from each slides (computationally effective if num process is set to be greater than 1.)
+2. Generate ROI regions from the annotation (Use this tab functionality only if you have annotated regions)
+3. Stitch processed outputs (Sanity check on the low resolution and high resolution images if needed. Generally recommended when you have more than 3 slide to process)
+4. Feature descriptor extraction
+
+For all the tabs, the screenshot of each tab is attached for better planning of the workflow
+
+<p align="center">
+  <img src="screenshot_images/cpmat_tab1.PNG" width="850" title="TAB-1" />
+  <img src="screenshot_images/cpmat_tab2.PNG" width="850" title="TAB-2" />
+  <img src="screenshot_images/cpmat_tab3.PNG" width="850" title="TAB-3" />
+  <img src="screenshot_images/cpmat_tab4.PNG" width="850" title="TAB-4" />
+</p>
+
 ## ROI stitching at low resolution
 
 It also helps to restitch the ROI's at a lower resolution for sanity check so it can be further processed by TWOMBLI
