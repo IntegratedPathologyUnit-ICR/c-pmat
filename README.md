@@ -109,7 +109,8 @@ cater for inter-tumour and intra-tumour heterogeneity and its implication of fea
 
 
 Currently, we have the support for the annotations performed by the pathologists using Imagescope on the
-PSR stained whole slide images.
+PSR stained whole slide images. Annotations and the respective tiles extraction has a dependency on openslide package. But if you
+do not have annotations, configuration of openslide can be excluded.
 
 Once you have annotations, it will retain the ROIs with respect to the individual slide automatically and extract the tiles
 corresponding to each ROI.
