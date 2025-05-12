@@ -118,9 +118,11 @@ Note: This code can be generically used for other brightfield images and extract
 
 ## Workflow Steps
 1. Generate Tiles from each slides (computationally effective if num process is set to be greater than 1 when you have more than 3 slide to process)
+   The option for num process is given in the combo box, where a user can select input field from the dropdown list, allowing users to either select a predefined option or enter a custom value based on number of processors
+   available to process in the users laptop/desktop. This functionality automatically detects available CPU cores.
 2. Generate ROI regions from the annotation (Use this tab/functionality only if you have annotated regions) # Annotations were used in the current project. If you dont have annotations, proceed to next tab after step 1.
 3. Stitch processed outputs (Sanity check on the low resolution and high resolution images if needed. Generally recommended when you have more than 3 slide to process)
-4. Feature descriptor extraction
+4. Feature descriptor extraction. The option for feature descriptor can be selected from the drop down list.
 
 For all the tabs, the screenshot of each tab is attached for better planning of the workflow
 
