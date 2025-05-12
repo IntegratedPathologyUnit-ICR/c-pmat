@@ -176,9 +176,9 @@ Follow platform-specific installation instructions
 Have annotations ready for detailed analysis
 
 ## Application advantages
-Flexibility: Supports various use cases with or without annotations
-Performance: Multi-processor support for efficient processing
-User-Friendly: Interactive interface with step-by-step guidance
+1. Flexibility: Supports various use cases with or without annotations
+2. Performance: Multi-processor support for efficient processing
+3. User-Friendly: Interactive interface with step-by-step guidance
 
 ## Extraction of features within c-PMAT framework
 Note: PMAT name was unavailable on pypi hence c-PMAT
