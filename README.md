@@ -126,18 +126,59 @@ Note: This code can be generically used for other brightfield images and extract
 4. Feature descriptor extraction. The option for feature descriptor can be selected from the drop down list.
 
 For all the tabs, the screenshot of each tab is attached for better planning of the workflow
+### Tile Generation
 
+Computationally optimized processing
+Supports multi-core processing
+User can select number of processors via a combo box
+Automatically detects available CPU cores
+Beneficial for processing multiple slides (>3 slides)
 <p align="center">
   <img src="screenshot_images/cpmat_tab1.PNG" width="850" title="TAB-1" />
+</p>
+
+### ROI Region Generation
+
+Works with pathologist annotations from Imagescope
+Optional step (can be skipped if no annotations exist)
+Extracts regions of interest (ROIs) from annotated slides
+<p align="center">
   <img src="screenshot_images/cpmat_tab2.PNG" width="850" title="TAB-2" />
+
+</p>
+
+### Output Stitching
+
+Sanity check on low and high-resolution images
+Recommended for processing multiple slides
+<p align="center">
   <img src="screenshot_images/cpmat_tab3.PNG" width="850" title="TAB-3" />
+</p>
+
+### Feature Descriptor Extraction
+
+Allows selection of feature descriptors from a dropdown
+Enables quantitative analysis of extracellular matrix
+<p align="center">
   <img src="screenshot_images/cpmat_tab4.PNG" width="850" title="TAB-4" />
 </p>
 
 ## ROI stitching at low resolution
 
+
 It also helps to restitch the ROI's at a lower resolution for sanity check so it can be further processed by TWOMBLI
 
+## Quickread for Users
+
+Ensure proper OpenSlide installation
+Use Anaconda environment for dependency management
+Follow platform-specific installation instructions
+Have annotations ready for detailed analysis
+
+## Application advantages
+Flexibility: Supports various use cases with or without annotations
+Performance: Multi-processor support for efficient processing
+User-Friendly: Interactive interface with step-by-step guidance
 
 ## Extraction of features within c-PMAT framework
 Note: PMAT name was unavailable on pypi hence c-PMAT
