@@ -7,6 +7,8 @@
 
 c-pmat ***C***omputational ***P***reprocessing of extracellular ***mat***rix 
 
+c-pmat, a comprehensive analytical package designed specifically for extracellular matrix research, featuring fully configurable parameters across all processing stages of whole slide images from preprocessing to feature descriptors. This toolset enables researchers to precisely tune methodological approaches to the unique characteristics of their ECM samples, accommodating varying data quality and experimental objectives. With an intuitive interface supporting real-time parameter adjustment and visualization, c-pmat empowers users to iteratively optimize their analytical pipeline, ensuring robust results even when confronted with heterogeneous or challenging dataset properties. The package's modular architecture allows seamless integration of established and novel analytical techniques, providing the flexibility required to address the complex and dynamic nature of extracellular matrix features.
+
 c-pmat is an interactive user interface, allowing user to easily preprocess, quality control (QC) 
 and generate quantitative extracellular matrix features.
 
