@@ -67,5 +67,5 @@ def convert_aperio_xml_to_geojson(xml_path, output_path):
 
 
 # Example usage
-convert_aperio_xml_to_geojson(r'D:\Projects\cbias-nap-AMY\slides\BCPP B22-953 6500-08-1A s7.xml', r'D:\Projects\cbias-nap-AMY\geojson\BCPP B22-953 6500-08-1A s7.geojson')
+convert_aperio_xml_to_geojson(r'D:\Projects\cbias-nap-AMY\slides\1.xml', r'D:\Projects\cbias-nap-AMY\geojson\1.geojson')
 print("Conversion complete. Check output.geojson")
