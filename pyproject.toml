@@ -18,5 +18,9 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/IntegratedPathologyUnit-ICR/c-pmat"
+Homepage = "https://github.com/IntegratedPathologyUnit-ICR/c-pmat"
+Documentation = "https://c-pmat-bioscope-research-and-dev-in-ecm.readthedocs.io/"
+Repository = "https://github.com/IntegratedPathologyUnit-ICR/c-pmat"
 "Bug Tracker" = "https://github.com/IntegratedPathologyUnit-ICR/c-pmat/issues"
+"Source Code" = "https://github.com/IntegratedPathologyUnit-ICR/c-pmat"
+"PyPI" = "https://pypi.org/project/c-pmat/"
