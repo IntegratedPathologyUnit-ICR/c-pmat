@@ -1,0 +1,170 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>c-pmat.utils_PMAT package &mdash; c-pmat Documentation 1.0.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=1ed6394b"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            c-pmat Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">c-pmat.utils_PMAT package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#c-pmat-utils-pmat-230912-twf-process-divide-in5-module">c-pmat.utils_PMAT.230912_TWF_process_divide_in5 module</a></li>
+<li><a class="reference internal" href="#c-pmat-utils-pmat-colour-norm-module">c-pmat.utils_PMAT.Colour_norm module</a></li>
+<li><a class="reference internal" href="#c-pmat-utils-pmat-rgb-odconversion-module">c-pmat.utils_PMAT.RGB_ODconversion module</a></li>
+<li><a class="reference internal" href="#c-pmat-utils-pmat-binarize-psr-orig-intensity-module">c-pmat.utils_PMAT.binarize_PSR_orig_intensity module</a></li>
+<li><a class="reference internal" href="#c-pmat-utils-pmat-copy-param-data-to-patches-module">c-pmat.utils_PMAT.copy_param_data_to_patches module</a></li>
+<li><a class="reference internal" href="#c-pmat-utils-pmat-extract-rois-from-annotations-module">c-pmat.utils_PMAT.extract_ROIs_from_annotations module</a></li>
+<li><a class="reference internal" href="#c-pmat-utils-pmat-extract-features-module">c-pmat.utils_PMAT.extract_features module</a></li>
+<li><a class="reference internal" href="#c-pmat-utils-pmat-feature-tree-branch-extraction-module">c-pmat.utils_PMAT.feature_tree_branch_extraction module</a></li>
+<li><a class="reference internal" href="#c-pmat-utils-pmat-generate-tiles-from-psr-wsi-slides-module">c-pmat.utils_PMAT.generate_tiles_from_PSR_wsi_slides module</a></li>
+<li><a class="reference internal" href="#c-pmat-utils-pmat-get-bg-correction-module">c-pmat.utils_PMAT.get_bg_correction module</a></li>
+<li><a class="reference internal" href="#c-pmat-utils-pmat-ihc-quant-module">c-pmat.utils_PMAT.ihc_quant module</a></li>
+<li><a class="reference internal" href="#c-pmat-utils-pmat-random-stitch-r-c-known-module">c-pmat.utils_PMAT.random_stitch_r_c_known module</a></li>
+<li><a class="reference internal" href="#c-pmat-utils-pmat-rois-in-xml-to-geojson-names-convertor-module">c-pmat.utils_PMAT.rois_in_xml_to_geojson_names_convertor module</a></li>
+<li><a class="reference internal" href="#c-pmat-utils-pmat-stitch-low-res-per-roi-with-80percent-tile-selection-twf-module">c-pmat.utils_PMAT.stitch_Low_res_per_ROI_with_80percent_tile_selection_TWF module</a></li>
+<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">c-pmat Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">c-pmat.utils_PMAT package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/c-pmat.utils_PMAT.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="c-pmat-utils-pmat-package">
+<h1>c-pmat.utils_PMAT package<a class="headerlink" href="#c-pmat-utils-pmat-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="c-pmat-utils-pmat-230912-twf-process-divide-in5-module">
+<h2>c-pmat.utils_PMAT.230912_TWF_process_divide_in5 module<a class="headerlink" href="#c-pmat-utils-pmat-230912-twf-process-divide-in5-module" title="Link to this heading"></a></h2>
+</section>
+<section id="c-pmat-utils-pmat-colour-norm-module">
+<h2>c-pmat.utils_PMAT.Colour_norm module<a class="headerlink" href="#c-pmat-utils-pmat-colour-norm-module" title="Link to this heading"></a></h2>
+</section>
+<section id="c-pmat-utils-pmat-rgb-odconversion-module">
+<h2>c-pmat.utils_PMAT.RGB_ODconversion module<a class="headerlink" href="#c-pmat-utils-pmat-rgb-odconversion-module" title="Link to this heading"></a></h2>
+</section>
+<section id="c-pmat-utils-pmat-binarize-psr-orig-intensity-module">
+<h2>c-pmat.utils_PMAT.binarize_PSR_orig_intensity module<a class="headerlink" href="#c-pmat-utils-pmat-binarize-psr-orig-intensity-module" title="Link to this heading"></a></h2>
+</section>
+<section id="c-pmat-utils-pmat-copy-param-data-to-patches-module">
+<h2>c-pmat.utils_PMAT.copy_param_data_to_patches module<a class="headerlink" href="#c-pmat-utils-pmat-copy-param-data-to-patches-module" title="Link to this heading"></a></h2>
+</section>
+<section id="c-pmat-utils-pmat-extract-rois-from-annotations-module">
+<h2>c-pmat.utils_PMAT.extract_ROIs_from_annotations module<a class="headerlink" href="#c-pmat-utils-pmat-extract-rois-from-annotations-module" title="Link to this heading"></a></h2>
+</section>
+<section id="c-pmat-utils-pmat-extract-features-module">
+<h2>c-pmat.utils_PMAT.extract_features module<a class="headerlink" href="#c-pmat-utils-pmat-extract-features-module" title="Link to this heading"></a></h2>
+</section>
+<section id="c-pmat-utils-pmat-feature-tree-branch-extraction-module">
+<h2>c-pmat.utils_PMAT.feature_tree_branch_extraction module<a class="headerlink" href="#c-pmat-utils-pmat-feature-tree-branch-extraction-module" title="Link to this heading"></a></h2>
+</section>
+<section id="c-pmat-utils-pmat-generate-tiles-from-psr-wsi-slides-module">
+<h2>c-pmat.utils_PMAT.generate_tiles_from_PSR_wsi_slides module<a class="headerlink" href="#c-pmat-utils-pmat-generate-tiles-from-psr-wsi-slides-module" title="Link to this heading"></a></h2>
+</section>
+<section id="c-pmat-utils-pmat-get-bg-correction-module">
+<h2>c-pmat.utils_PMAT.get_bg_correction module<a class="headerlink" href="#c-pmat-utils-pmat-get-bg-correction-module" title="Link to this heading"></a></h2>
+</section>
+<section id="c-pmat-utils-pmat-ihc-quant-module">
+<h2>c-pmat.utils_PMAT.ihc_quant module<a class="headerlink" href="#c-pmat-utils-pmat-ihc-quant-module" title="Link to this heading"></a></h2>
+</section>
+<section id="c-pmat-utils-pmat-random-stitch-r-c-known-module">
+<h2>c-pmat.utils_PMAT.random_stitch_r_c_known module<a class="headerlink" href="#c-pmat-utils-pmat-random-stitch-r-c-known-module" title="Link to this heading"></a></h2>
+</section>
+<section id="c-pmat-utils-pmat-rois-in-xml-to-geojson-names-convertor-module">
+<h2>c-pmat.utils_PMAT.rois_in_xml_to_geojson_names_convertor module<a class="headerlink" href="#c-pmat-utils-pmat-rois-in-xml-to-geojson-names-convertor-module" title="Link to this heading"></a></h2>
+</section>
+<section id="c-pmat-utils-pmat-stitch-low-res-per-roi-with-80percent-tile-selection-twf-module">
+<h2>c-pmat.utils_PMAT.stitch_Low_res_per_ROI_with_80percent_tile_selection_TWF module<a class="headerlink" href="#c-pmat-utils-pmat-stitch-low-res-per-roi-with-80percent-tile-selection-twf-module" title="Link to this heading"></a></h2>
+</section>
+<section id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, priya.narayanan@icr.ac.uk.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

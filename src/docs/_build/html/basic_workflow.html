@@ -1,0 +1,596 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic Workflow Tutorial &mdash; c-pmat Documentation 1.0.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=1ed6394b"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to c-pmat documentation." href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            c-pmat Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Basic Workflow Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-prepare-your-data">Step 1: Prepare Your Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-launch-c-pmat">Step 2: Launch c-pmat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-generate-tiles-from-wsi">Step 3: Generate Tiles from WSI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-4-extract-roi-regions">Step 4: Extract ROI Regions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-5-stitch-processed-outputs">Step 5: Stitch Processed Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-6-extract-feature-descriptors">Step 6: Extract Feature Descriptors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-7-interpret-your-results">Step 7: Interpret Your Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-8-next-steps-and-analysis">Step 8: Next Steps and Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">c-pmat Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Basic Workflow Tutorial</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/basic_workflow.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="basic-workflow-tutorial">
+<h1>Basic Workflow Tutorial<a class="headerlink" href="#basic-workflow-tutorial" title="Link to this heading"></a></h1>
+<dl class="simple">
+<dt>🎯 <strong>Learning Objectives</strong></dt><dd><p>Learn the complete P-MAT workflow from start to finish</p>
+</dd>
+<dt>📋 <strong>Prerequisites</strong></dt><dd><ul class="simple">
+<li><p>c-pmat installed and working</p></li>
+<li><p>Sample whole slide image (.ndpi, .svs, .mrxs, .scn or .tif)</p></li>
+<li><p>Corresponding XML annotation file</p></li>
+<li><p>8GB+ RAM and 10GB+ free disk space</p></li>
+</ul>
+</dd>
+<dt>⏱️ <strong>Estimated Time</strong></dt><dd><p>45-60 minutes</p>
+</dd>
+<dt>📁 <strong>Sample Data</strong></dt><dd><p>Download the tutorial dataset from: <a class="reference external" href="#">tutorial-data.zip</a></p>
+</dd>
+</dl>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>This tutorial walks you through the complete c-pmat workflow using a sample Picrosirius Red (PSR) stained tissue slide. You’ll learn how to:</p>
+<ol class="arabic simple">
+<li><p>Generate image tiles from a whole slide image</p></li>
+<li><p>Extract regions of interest using annotations</p></li>
+<li><p>Stitch processed outputs at multiple resolutions</p></li>
+<li><p>Extract quantitative morphological features</p></li>
+</ol>
+<p>The workflow processes collagen fiber organization in tissue samples, providing quantitative measurements of extracellular matrix structure.</p>
+</section>
+<section id="step-1-prepare-your-data">
+<h2>Step 1: Prepare Your Data<a class="headerlink" href="#step-1-prepare-your-data" title="Link to this heading"></a></h2>
+<p><strong>1.1 Set Up Directory Structure</strong></p>
+<p>Create a clean workspace for this tutorial:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>c-pmat_basic_tutorial
+<span class="nb">cd</span><span class="w"> </span>c-pmat_basic_tutorial
+
+<span class="c1"># Create required directories</span>
+mkdir<span class="w"> </span>slides
+mkdir<span class="w"> </span>tiles
+mkdir<span class="w"> </span>roi_output
+mkdir<span class="w"> </span>stitched_low_res
+mkdir<span class="w"> </span>stitched_high_res
+</pre></div>
+</div>
+<p><strong>1.2 Place Your Sample Data</strong></p>
+<p>Copy your sample files:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pmat_basic_tutorial/
+└── slides/
+    ├── P001_sample.ndpi      # Your PSR stain whole slide image
+    └── P002_sample.xml       # Corresponding annotation file
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The XML file must have the same base name as the slide file for automatic detection.</p>
+</div>
+<p><strong>1.3 Verify Your Data</strong></p>
+<p>Check that your files are correctly placed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>-la<span class="w"> </span>slides/
+<span class="c1"># Should show both .ndpi and .xml files</span>
+</pre></div>
+</div>
+</section>
+<section id="step-2-launch-c-pmat">
+<h2>Step 2: Launch c-pmat<a class="headerlink" href="#step-2-launch-c-pmat" title="Link to this heading"></a></h2>
+<p><strong>2.1 Start the Application</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>main.py
+</pre></div>
+</div>
+<p>This opens the napari viewer with c-pmat’s tabbed interface on the right.</p>
+<p><strong>2.2 Understand the Interface</strong></p>
+<p>The c-pmat interface has four tabs:</p>
+<ol class="arabic simple">
+<li><p><strong>Generate tiles from WSIs</strong>: Extract image patches</p></li>
+<li><p><strong>Generate ROI regions of annotation</strong>: Process only annotated areas</p></li>
+<li><p><strong>Stitch processed outputs</strong>: Reconstruct images</p></li>
+<li><p><strong>Feature descriptor extraction</strong>: Quantify morphology</p></li>
+</ol>
+</section>
+<section id="step-3-generate-tiles-from-wsi">
+<h2>Step 3: Generate Tiles from WSI<a class="headerlink" href="#step-3-generate-tiles-from-wsi" title="Link to this heading"></a></h2>
+<p><strong>3.1 Configure Tile Generation</strong></p>
+<p>In the “Generate tiles from WSIs” tab:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Input slide dir</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/path/to/c-pmat_basic_tutorial/slides</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>WSI tiles dir</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/path/to/c-pmat_basic_tutorial/tiles</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>File type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.ndpi</span></code> (or your file extension)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Num process</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4</span></code> (adjust based on your CPU)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>3.2 Run Tile Generation</strong></p>
+<ol class="arabic simple">
+<li><p>Click <strong>Run</strong></p></li>
+<li><p>Monitor progress in the console</p></li>
+<li><p>Wait for “Extraction completed!” message</p></li>
+</ol>
+<p><strong>3.3 Verify Output</strong></p>
+<p>Check the generated tiles:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>tiles/P001_sample.ndpi/
+<span class="c1"># Should show: Da0.jpg, Da1.jpg, ..., param.p, thumbnail.jpg</span>
+</pre></div>
+</div>
+<p><strong>What Happened:</strong>
+- c-pmat divided your large slide into 2000×2000 pixel tiles
+- Each tile is saved as a JPEG file
+- Processing parameters are saved in <code class="docutils literal notranslate"><span class="pre">param.p</span></code>
+- A thumbnail image was generated for quick reference</p>
+</section>
+<section id="step-4-extract-roi-regions">
+<h2>Step 4: Extract ROI Regions<a class="headerlink" href="#step-4-extract-roi-regions" title="Link to this heading"></a></h2>
+<p><strong>4.1 Configure ROI Extraction</strong></p>
+<p>In the “Generate ROI regions of annotation” tab:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Input slide dir</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/path/to/pmat_basic_tutorial/slides</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>WSI tiles dir</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/path/to/pmat_basic_tutorial/tiles</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Output dir</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/path/to/pmat_basic_tutorial/roi_output</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>File type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.ndpi</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Thresh d</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">80</span></code> (80% tissue threshold)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>4.2 Run ROI Extraction</strong></p>
+<ol class="arabic simple">
+<li><p>Click <strong>Run</strong></p></li>
+<li><p>Processing may take 10-15 minutes for a typical slide</p></li>
+<li><p>Watch for completion message</p></li>
+</ol>
+<p><strong>4.3 Examine the Results</strong></p>
+<p>Explore the generated directories:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find<span class="w"> </span>roi_output/<span class="w"> </span>-type<span class="w"> </span>d
+<span class="c1"># Shows the directory structure created</span>
+</pre></div>
+</div>
+<p>Key output directories:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>roi_output/cws/P001_sample.ndpi/
+├── img_mask/           # Binary tissue masks
+├── ROI_80_AFC/         # Artifact-corrected images
+├── ROI_80_H1/          # Hematoxylin channel
+├── ROI_80_PS1/         # Picrosirius red channel
+└── ROI_TWF_FILTER_ORIG/  # Filtered original images
+</pre></div>
+</div>
+<p><strong>What Happened:</strong>
+- c-pmat read your XML annotations
+- Extracted annotated regions from tiles
+- Applied color normalization (separating H&amp;E and PSR channels)
+- Filtered out artifacts and low-quality regions
+- Created multiple processing variants for different analyses</p>
+</section>
+<section id="step-5-stitch-processed-outputs">
+<h2>Step 5: Stitch Processed Outputs<a class="headerlink" href="#step-5-stitch-processed-outputs" title="Link to this heading"></a></h2>
+<p><strong>5.1 Configure Stitching</strong></p>
+<p>In the “Stitch processed outputs” tab:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CWS dir</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/path/to/pmat_basic_tutorial/tiles</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Annot dir</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/path/to/pmat_basic_tutorial/roi_output</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Output low res dir</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/path/to/pmat_basic_tutorial/stitched_low_res</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>High res dir</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/path/to/pmat_basic_tutorial/stitched_high_res</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Specific dir</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ROI_80_H1</span></code> (Hematoxylin channel)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Scale</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">16</span></code> (16x downsampling)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>5.2 Run Stitching</strong></p>
+<ol class="arabic simple">
+<li><p>Click <strong>Run</strong></p></li>
+<li><p>Processing typically takes 5-10 minutes</p></li>
+<li><p>Check console for progress updates</p></li>
+</ol>
+<p><strong>5.3 View Stitched Results</strong></p>
+<p>Open the generated images:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check low-resolution stitched images</span>
+ls<span class="w"> </span>stitched_low_res/P001_sample.ndpi/*/
+
+<span class="c1"># Check high-resolution images</span>
+ls<span class="w"> </span>stitched_high_res/P002_sample.ndpi/*/
+</pre></div>
+</div>
+<p><strong>What Happened:</strong>
+- c-pmat reconstructed coherent images from individual processed tiles
+- Created both low-resolution (for overview) and high-resolution (for detail) versions
+- Organized results by ROI and processing type</p>
+</section>
+<section id="step-6-extract-feature-descriptors">
+<h2>Step 6: Extract Feature Descriptors<a class="headerlink" href="#step-6-extract-feature-descriptors" title="Link to this heading"></a></h2>
+<p><strong>6.1 Configure Feature Extraction</strong></p>
+<p>In the “Feature descriptor extraction” tab:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>WSI tiles dir</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/path/to/c-pmat_basic_tutorial/tiles</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Output dir</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/path/to/c-pmat_basic_tutorial/roi_output</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>File type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.ndpi</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Shape type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Tree</span></code> (for fiber tree analysis)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>6.2 Run Feature Extraction</strong></p>
+<ol class="arabic simple">
+<li><p>Click <strong>Run</strong></p></li>
+<li><p>This step can take 15-30 minutes depending on image complexity</p></li>
+<li><p>Monitor progress in console</p></li>
+</ol>
+<p><strong>6.3 Analyze the Results</strong></p>
+<p>Check the generated feature data:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find<span class="w"> </span>roi_output/<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.csv&quot;</span>
+<span class="c1"># Lists all CSV files with measurements</span>
+</pre></div>
+</div>
+<p>Key output files:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>roi_output/cws/P001_sample.ndpi/tree_overlay_img/
+├── ROI_1/
+│   ├── all_tree_da.csv      # Detailed measurements per patch
+│   └── *.png                # Overlay images showing detected features
+├── ROI_2/
+│   └── ...
+└── all_roi_tree.csv         # Summary measurements per ROI
+</pre></div>
+</div>
+<p><strong>What Happened:</strong>
+- c-pmat analyzed the morphological structure of fibers
+- Detected tree-like collagen organizations
+- Calculated quantitative descriptors (length, density, branching)
+- Generated overlay images showing detected features
+- Exported measurements to CSV files for analysis</p>
+</section>
+<section id="step-7-interpret-your-results">
+<h2>Step 7: Interpret Your Results<a class="headerlink" href="#step-7-interpret-your-results" title="Link to this heading"></a></h2>
+<p><strong>7.1 Open the CSV Files</strong></p>
+<p>View your quantitative results:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Load ROI-level summary</span>
+<span class="n">roi_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;roi_output/cws/P001_sample.ndpi/tree_overlay_img/all_roi_tree.csv&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">roi_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="c1"># Load detailed patch-level data</span>
+<span class="n">patch_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;roi_output/cws/P001_sample.ndpi/tree_overlay_img/ROI_1/all_tree_da.csv&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">patch_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+<p><strong>7.2 Understand the Measurements</strong></p>
+<p>Key measurements in the CSV files:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Measurement</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">file_name</span></code></p></td>
+<td><p>Path to the analyzed image patch</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mask</span></code></p></td>
+<td><p>Total tissue area in pixels</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tree_count</span></code></p></td>
+<td><p>Number of tree-like structures detected</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tree_ratio</span></code></p></td>
+<td><p>Tree density per unit area (normalized)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>7.3 Visualize Your Results</strong></p>
+<p>Open the overlay images in napari:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">napari</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">io</span>
+
+<span class="c1"># Load an overlay image</span>
+<span class="n">overlay</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;roi_output/cws/BCPP_sample.ndpi/tree_overlay_img/ROI_1/Da0_skel.png&#39;</span><span class="p">)</span>
+
+<span class="n">viewer</span> <span class="o">=</span> <span class="n">napari</span><span class="o">.</span><span class="n">Viewer</span><span class="p">()</span>
+<span class="n">viewer</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">overlay</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Feature Overlay&#39;</span><span class="p">)</span>
+<span class="n">napari</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="step-8-next-steps-and-analysis">
+<h2>Step 8: Next Steps and Analysis<a class="headerlink" href="#step-8-next-steps-and-analysis" title="Link to this heading"></a></h2>
+<p><strong>8.1 Statistical Analysis</strong></p>
+<p>Analyze your measurements:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Plot tree density distribution</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">roi_data</span><span class="p">[</span><span class="s1">&#39;tree_ratio&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Tree Density&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of Collagen Tree Density&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Summary statistics</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">roi_data</span><span class="p">[</span><span class="s1">&#39;tree_ratio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+</div>
+<p><strong>8.2 Compare Different ROIs</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Group by ROI type if you have multiple annotation classes</span>
+<span class="n">roi_summary</span> <span class="o">=</span> <span class="n">roi_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;file_name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span>
+    <span class="s1">&#39;tree_count&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;tree_ratio&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">roi_summary</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>8.3 Quality Control</strong></p>
+<p>Check processing quality:</p>
+<ol class="arabic simple">
+<li><p><strong>Visual Inspection</strong>: Open stitched images to verify processing quality</p></li>
+<li><p><strong>Measurement Validation</strong>: Look for outliers or unexpected values</p></li>
+<li><p><strong>Overlay Verification</strong>: Check that detected features match visual expectations</p></li>
+</ol>
+<p>Common Quality Issues:
+- Very high or very low tree counts may indicate processing artifacts
+- Check overlay images to ensure features are correctly detected
+- Verify that tissue regions are properly segmented</p>
+<p><strong>8.4 Export for Publication</strong></p>
+<p>Prepare results for analysis or publication:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Export summary statistics</span>
+<span class="n">summary_stats</span> <span class="o">=</span> <span class="n">roi_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;ROI_type&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span>
+    <span class="s1">&#39;tree_ratio&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">]</span>
+<span class="p">})</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">summary_stats</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;summary_statistics.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create publication-ready figures</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="c1"># Add your plotting code here</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;collagen_analysis_results.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<p><strong>Common Issues and Solutions:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 40.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Problem</p></th>
+<th class="head"><p>Solution</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>“OpenSlide not found”</p></td>
+<td><p>Check OpenSlide installation and path</p></td>
+</tr>
+<tr class="row-odd"><td><p>Empty output directories</p></td>
+<td><p>Verify file paths and XML annotation format</p></td>
+</tr>
+<tr class="row-even"><td><p>Very long processing times</p></td>
+<td><p>Reduce number of processes or image size</p></td>
+</tr>
+<tr class="row-odd"><td><p>Memory errors</p></td>
+<td><p>Close other applications, use fewer processes</p></td>
+</tr>
+<tr class="row-even"><td><p>No features detected</p></td>
+<td><p>Check image quality and processing parameters</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Getting Help:</strong></p>
+<ul class="simple">
+<li><p>Check the console output for detailed error messages</p></li>
+<li><p>Verify your input data format matches requirements</p></li>
+<li><p>Try with smaller test images first</p></li>
+<li><p>Visit the <a class="reference external" href="#">GitHub Issues</a> page for community support</p></li>
+</ul>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<p>🎉 <strong>Congratulations!</strong> You’ve completed the basic c-pmat workflow!</p>
+<p><strong>What You’ve Learned:</strong></p>
+<p>✅ How to set up c-pmat for analysis
+✅ Tile generation from whole slide images
+✅ ROI extraction using XML annotations
+✅ Image stitching and reconstruction
+✅ Quantitative feature extraction
+✅ Basic result interpretation</p>
+<p><strong>Key Takeaways:</strong></p>
+<ul class="simple">
+<li><p>c-pmat provides a complete workflow for pathology image analysis</p></li>
+<li><p>Each step builds on the previous one, creating a data processing pipeline</p></li>
+<li><p>Quantitative measurements enable objective comparison of tissue samples</p></li>
+<li><p>Visual overlays help validate computational results</p></li>
+</ul>
+<p><strong>Next Steps:</strong></p>
+<ul class="simple">
+<li><p>Try <span class="xref std std-doc">batch_processing</span> for analyzing multiple slides</p></li>
+<li><p>Learn about <span class="xref std std-doc">understanding_parameters</span> to customize analysis</p></li>
+<li><p>Explore <span class="xref std std-doc">feature_extraction_deep_dive</span> for advanced morphological analysis</p></li>
+<li><p>Check out <span class="xref std std-doc">psr_stain_analysis</span> for specialized collagen analysis</p></li>
+</ul>
+<p><strong>Your Results:</strong></p>
+<p>You now have:
+- Processed image tiles with quality control
+- Quantitative measurements of collagen organization
+- Visual overlays showing detected morphological features
+- Data ready for statistical analysis and publication</p>
+<p>Keep experimenting with different parameters to optimize results for your specific research needs!</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to c-pmat documentation." accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, priya.narayanan@icr.ac.uk.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
