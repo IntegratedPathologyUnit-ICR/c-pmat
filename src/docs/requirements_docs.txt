@@ -1,0 +1,23 @@
+# Documentation build requirements
+sphinx>=4.0.0
+sphinx-rtd-theme>=0.5.0
+myst-parser>=0.15.0
+sphinx-autodoc-typehints>=1.12.0
+sphinx-autobuild>=2021.3.14
+
+# Additional documentation extensions
+sphinxcontrib-spelling>=7.2.0
+sphinx-copybutton>=0.4.0
+sphinx-design>=0.2.0
+sphinx-togglebutton>=0.2.3
+
+# For building notebooks in docs
+nbsphinx>=0.8.7
+jupyter>=1.0.0
+ipykernel>=6.0.0
+
+# For better API documentation
+sphinx-autoapi>=1.8.0
+
+# For diagram generation
+graphviz>=0.17
