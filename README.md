@@ -20,6 +20,11 @@ perform downstream analysis.
 Through the usage of the step by step process, user will be able to preprocess,
 extract and quantify extracellular matrix features.
 
+## Documentation
+```
+https://c-pmat-bioscope-research-and-dev-in-ecm.readthedocs.io/en/latest/basic_workflow.html#introduction
+```
+
 ## Installation from pypi https://pypi.org/project/c-pmat/
 ```
 pip install c-pmat==1.0.2
@@ -193,3 +198,4 @@ Note: PMAT name was unavailable on pypi hence c-PMAT
 1. https://doi.org/10.25418/crick.26565343
 2. https://zenodo.org/records/14231926
    
+
